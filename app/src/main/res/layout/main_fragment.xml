@@ -11,8 +11,5 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.main.MainFragment">
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        tools:context=".ui.main.MainFragment"/>
 </layout>

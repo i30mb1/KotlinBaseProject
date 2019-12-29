@@ -1,6 +1,8 @@
 package com.example.myperfectemptyproject.di
 
 import android.app.Application
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
 import com.example.myperfectemptyproject.ui.main.MainViewModel
 import com.squareup.inject.assisted.AssistedInject
 import com.squareup.inject.assisted.dagger2.AssistedModule
@@ -10,7 +12,7 @@ import dagger.Module
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [ApplicationModule::class, RetrofitModule::class, RepositoryModule::class,ViewModelAssistedFactoriesModule::class])
+@Component(modules = [ApplicationModule::class, RetrofitModule::class, RepositoryModule::class, AssistedInjectModule::class])
 interface ApplicationComponent {
 
     @Component.Factory
@@ -25,5 +27,9 @@ interface ApplicationComponent {
 }
 
 @AssistedModule
-@Module(includes = [AssistedInject_ViewModelAssistedFactoriesModule::class])
-abstract class ViewModelAssistedFactoriesModule
+@Module(includes = [AssistedInject_AssistedInjectModule::class])
+abstract class AssistedInjectModule
+
+interface ViewModelAssistedFactory<T : ViewModel> {
+    fun create(handle: SavedStateHandle): T
+}
