@@ -120,6 +120,8 @@ dependencies {
     val dagger = "2.25.2"
     implementation("com.google.dagger:dagger:$dagger")
     kapt("com.google.dagger:dagger-compiler:$dagger")
+    compileOnly("com.squareup.inject:assisted-inject-annotations-dagger2:0.5.2")
+    kapt("com.squareup.inject:assisted-inject-processor-dagger2:0.5.2")
 
     // --- Coil ---
     val coil = "0.8.0"

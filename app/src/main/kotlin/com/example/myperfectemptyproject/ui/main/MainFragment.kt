@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.observe
 import com.example.myperfectemptyproject.R
 import com.example.myperfectemptyproject.databinding.MainFragmentBinding
 import com.example.myperfectemptyproject.di.injector
@@ -20,7 +22,7 @@ class MainFragment : Fragment() {
     private lateinit var binding: MainFragmentBinding
     private var finishActivity = false
     private val viewmodel by viewModel {
-        injector.mainViewModel
+        injector.mainViewModelFactory.create("hello")
     }
 
     override fun onCreateView(
@@ -37,6 +39,9 @@ class MainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setupOnBackPressedAction()
+        viewmodel.errorMessage.observe(this) {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun setupListAdapter() {
