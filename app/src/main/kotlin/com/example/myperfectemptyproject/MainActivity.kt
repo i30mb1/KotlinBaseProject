@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
 
         viewmodel.liveData.observe(this) {}
     }
-
 }
 
 class SimpleLifeCycleAwareObservable(application: Application) : AndroidViewModel(application) {

@@ -13,7 +13,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.navGraphViewModels
-import com.example.myperfectemptyproject.di.ViewModelAssistedFactory
+import com.example.myperfectemptyproject.ui.main.ViewModelAssistedFactory
 
 inline fun <reified T : ViewModel> FragmentActivity.viewModel(
     crossinline provider: () -> T
@@ -43,7 +43,6 @@ inline fun <reified T : ViewModel> Fragment.viewModelWithSavedStateHandle(
         ): T {
             return provider().create(handle) as T
         }
-
     }
 }
 

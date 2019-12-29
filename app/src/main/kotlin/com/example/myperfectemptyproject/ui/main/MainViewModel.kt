@@ -1,9 +1,13 @@
 package com.example.myperfectemptyproject.ui.main
 
 import android.app.Application
-import androidx.lifecycle.*
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.myperfectemptyproject.data.source.remote.ApiErrorHandle
-import com.example.myperfectemptyproject.di.ViewModelAssistedFactory
 import com.example.myperfectemptyproject.ui.main.domain.usecase.UseCase
 import com.squareup.inject.assisted.Assisted
 import com.squareup.inject.assisted.AssistedInject
@@ -27,13 +31,14 @@ class MainViewModel @AssistedInject constructor(
         viewModelScope.launch {
             useCase.execute()
                 .onSuccess {
-
                 }
                 .onFailure {
-                    _errorMessage.value = ApiErrorHandle.traceErrorException(it).getErrorMessage()
-                    _errorMessage.value = null
+                    _errorMessage.value = ApiErrorHandle.traceErrorException(it).getErrorMessage(); _errorMessage.value = null
                 }
         }
     }
+}
 
+interface ViewModelAssistedFactory<T : ViewModel> {
+    fun create(handle: SavedStateHandle): T
 }
