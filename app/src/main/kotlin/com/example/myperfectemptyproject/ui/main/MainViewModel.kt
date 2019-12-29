@@ -13,6 +13,7 @@ import com.squareup.inject.assisted.Assisted
 import com.squareup.inject.assisted.AssistedInject
 import kotlinx.coroutines.launch
 
+//todo make this ViewModel to BaseViewModel
 class MainViewModel @AssistedInject constructor(
     application: Application,
     @Assisted private val handle: SavedStateHandle,
